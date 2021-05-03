@@ -9,7 +9,7 @@ const countProduct = document.getElementById('productCount');
 let productData = []
 
 function addProduct() {
-  if (newProduct !== '') {
+  if (productInput.value !== '') {
     productData.push({
       id: Math.floor(Date.now()),
       title: productInput.value.trim(),
