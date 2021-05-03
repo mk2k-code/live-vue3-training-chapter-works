@@ -9,17 +9,12 @@ const countProduct = document.getElementById('productCount');
 let productData = []
 
 function addProduct() {
-  const newProduct = productInput.value.trim();
-  const newOriginPrice = parseInt(productOriginPrice.value);
-  const newPrice = parseInt(productPrice.value);
-
-  const timeStamp = Math.floor(Date.now());
   if (newProduct !== '') {
     productData.push({
-      id: timeStamp,
-      title: newProduct,
-      origin_price: newOriginPrice || 0,
-      price: newPrice || 0,
+      id: Math.floor(Date.now()),
+      title: productInput.value.trim(),
+      origin_price: parseInt(productOriginPrice.value) || 0,
+      price: parseInt(productPrice.value) || 0,
       is_enabled: false,
     })
 
@@ -40,24 +35,21 @@ function removeProduct(id) {
     }
   })
   productData.splice(newIndex, 1);
-
   renderPage(productData);
 }
 
-function completeProduct(id) {
+function statusProduct(id) {
   productData.forEach((item) => {
     if (id == item.id) {
       item.is_enabled = !item.is_enabled;
     }
   })
-
   renderPage(productData);
 }
 
 function clearAllTask(e) {
   e.preventDefault();
   productData = [];
-
   renderPage(productData);
 }
 
@@ -68,8 +60,8 @@ function doSomething(e) {
   const id = e.target.dataset.id;
   if (action === 'remove') {
     removeProduct(id)
-  } else if (action === 'complete') {
-    completeProduct(id)
+  } else if (action === 'status') {
+    statusProduct(id)
   }
 }
 
@@ -89,7 +81,7 @@ function renderPage(data) {
       </td>
       <td width="100">
         <div class="form-check form-switch">
-          <input class="form-check-input" type="checkbox" id="is_enabled" ${item.is_enabled? 'checked': ''} data-action="complete" data-id="${item.id}">
+          <input class="form-check-input" type="checkbox" id="is_enabled" ${item.is_enabled? 'checked': ''} data-action="status" data-id="${item.id}">
           <label class="form-check-label" for="is_enabled">${item.is_enabled? '啟用' : '未啟用'}</label>
         </div>
       </td>
