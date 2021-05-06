@@ -23,12 +23,12 @@ document.getElementById('addProduct').addEventListener('click', (e) => {
         </td>
         <td width="100">
           <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="is_enabled" ${item.is_enabled? 'checked': ''} data-action="complete" data-id="${item.id}">
-            <label class="form-check-label" for="is_enabled">${item.is_enabled? '啟用' : '未啟用'}</label>
+            <input class="form-check-input" type="checkbox" id="${item.id}" ${item.is_enabled? 'checked': ''} data-action="status" data-id="${item.id}">
+            <label class="form-check-label" for="${item.id}">${item.is_enabled? '啟用' : '未啟用'}</label>
           </div>
         </td>
         <td width="120">
-          <button type="button" class="btn btn-sm btn-danger move" data-action="remove" data-id="${item.id}"> 刪除 </button>
+          <button type="button" class="btn btn-sm btn-outline-danger move" data-action="remove" data-id="${item.id}"> 刪除 </button>
         </td>
       </tr>`;
     })
@@ -58,12 +58,12 @@ document.getElementById('clearAll').addEventListener('click', (e) => {
       </td>
       <td width="100">
         <div class="form-check form-switch">
-          <input class="form-check-input" type="checkbox" id="is_enabled" ${item.is_enabled? 'checked': ''} data-action="complete" data-id="${item.id}">
-          <label class="form-check-label" for="is_enabled">${item.is_enabled? '啟用' : '未啟用'}</label>
+          <input class="form-check-input" type="checkbox" id="${item.id}" ${item.is_enabled? 'checked': ''} data-action="status" data-id="${item.id}">
+          <label class="form-check-label" for="${item.id}">${item.is_enabled? '啟用' : '未啟用'}</label>
         </div>
       </td>
       <td width="120">
-        <button type="button" class="btn btn-sm btn-danger move" data-action="remove" data-id="${item.id}"> 刪除 </button>
+        <button type="button" class="btn btn-sm btn-outline-danger move" data-action="remove" data-id="${item.id}"> 刪除 </button>
       </td>
     </tr>`;
   })
@@ -83,7 +83,7 @@ document.getElementById('productList').addEventListener('click', (e) => {
     })
     productData.splice(newIndex, 1);
 
-  } else if (action === 'complete') {
+  } else if (action === 'status') {
     productData.forEach((item) => {
       if (id == item.id) {
         item.is_enabled = !item.is_enabled;
@@ -103,12 +103,12 @@ document.getElementById('productList').addEventListener('click', (e) => {
       </td>
       <td width="100">
         <div class="form-check form-switch">
-          <input class="form-check-input" type="checkbox" id="is_enabled" ${item.is_enabled? 'checked': ''} data-action="complete" data-id="${item.id}">
-          <label class="form-check-label" for="is_enabled">${item.is_enabled? '啟用' : '未啟用'}</label>
+          <input class="form-check-input" type="checkbox" id="${item.id}" ${item.is_enabled? 'checked': ''} data-action="status" data-id="${item.id}">
+          <label class="form-check-label" for="${item.id}" data-action="status">${item.is_enabled? '啟用' : '未啟用'}</label>
         </div>
       </td>
       <td width="120">
-        <button type="button" class="btn btn-sm btn-danger move" data-action="remove" data-id="${item.id}"> 刪除 </button>
+        <button type="button" class="btn btn-sm btn-outline-danger move" data-action="remove" data-id="${item.id}"> 刪除 </button>
       </td>
     </tr>`;
   })
@@ -129,12 +129,12 @@ productData.forEach((item) => {
     </td>
     <td width="100">
       <div class="form-check form-switch">
-        <input class="form-check-input" type="checkbox" id="is_enabled" ${item.is_enabled? 'checked': ''} data-action="complete" data-id="${item.id}">
-        <label class="form-check-label" for="is_enabled">${item.is_enabled? '啟用' : '未啟用'}</label>
+        <input class="form-check-input" type="checkbox" id="${item.id}" ${item.is_enabled? 'checked': ''} data-action="status" data-id="${item.id}">
+        <label class="form-check-label" for="${item.id}">${item.is_enabled? '啟用' : '未啟用'}</label>
       </div>
     </td>
     <td width="120">
-      <button type="button" class="btn btn-sm btn-danger move" data-action="remove" data-id="${item.id}"> 刪除 </button>
+      <button type="button" class="btn btn-sm btn-outline-danger move" data-action="remove" data-id="${item.id}"> 刪除 </button>
     </td>
   </tr>`;
 })
