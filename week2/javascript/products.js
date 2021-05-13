@@ -1,11 +1,11 @@
 const app = {
   data: {
-    apiUrl: '',
-    apiPath: '',
+    apiUrl: 'https://vue3-course-api.hexschool.io/api',
+    apiPath: 'hexschoolvue',
     products: [],
   },
   getData(page = 1) {
-    const url = `${this.data.apiUrl}/${this.data.apiPath}/admin/products?page=${page}`;
+    const url = `${this.data.apiUrl}/${this.data.apiPath}/products?page=${page}`;
     axios.get(url).then((response) => {
       if (response.data.success) {
         this.data.products = response.data.products;
@@ -18,15 +18,16 @@ const app = {
   },
   deleteData(e) {
     if (window.confirm('你確定要刪除嗎？')) {
-      const { id } = e.target.dataset;
-      const url = `${this.data.apiUrl}/${this.data.apiPath}/admin/product/${id}`;
+      window.alert('示範程式碼不運作');
+      // const { id } = e.target.dataset;
+      // const url = `${this.data.apiUrl}/${this.data.apiPath}/admin/product/${id}`;
 
-      axios.delete(url).then((response) => {
-        if (response.data.success) {
-          alert(response.data.message)
-          this.getData();
-        }
-      });
+      // axios.delete(url).then((response) => {
+      //   if (response.data.success) {
+      //     alert(response.data.message)
+      //     this.getData();
+      //   }
+      // });
     }
   },
   render() {
@@ -57,7 +58,6 @@ const app = {
 
     const deleteBtn = document.querySelectorAll('.deleteBtn');
     deleteBtn.forEach((item) => {
-      // 由於綁在 DOM 上的方法 this 必定會指向 DOM 因此建議使用 bind 重新設定 this 確保 this 指向
       item.addEventListener('click', this.deleteData.bind(this));
     })
   },
